@@ -2,6 +2,20 @@
 
 This guide explains how to transition the workshop website between different phases and years.
 
+## Repository
+
+GitHub repository: https://github.com/maspikveday-web/ColumbiaHUJIWebsite.git
+
+Clone the project:
+```bash
+git clone https://github.com/maspikveday-web/ColumbiaHUJIWebsite.git
+```
+
+Set the remote for an existing checkout:
+```bash
+git remote set-url origin https://github.com/maspikveday-web/ColumbiaHUJIWebsite.git
+```
+
 ## File Structure
 
 ```
