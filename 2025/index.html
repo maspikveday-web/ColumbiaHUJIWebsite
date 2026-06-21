@@ -41,7 +41,99 @@
 
             <h3>Schedule</h3>
             <div id="schedule-container" data-year="2025">
-                <p>Loading schedule...</p>
+                <div class="schedule">
+                    <div class="schedule-item break-item">
+                        <div class="schedule-header">
+                            <div class="time">12:30 - 13:00</div>
+                            <div class="speaker-title">
+                                <div class="speaker">Set Up</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item break-item">
+                        <div class="schedule-header">
+                            <div class="time">13:00 - 13:30</div>
+                            <div class="speaker-title">
+                                <div class="speaker">Lunch</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item talk-item" onclick="toggleDetails(0)" role="button" tabindex="0">
+                        <div class="schedule-header">
+                            <div class="time">13:30 - 14:30</div>
+                            <div class="speaker-title">
+                                <div class="speaker">Julia Stoyanovich</div>
+                                <div class="title">Calling Bullshit on AI-assisted Personality Prediction in Hiring: Results of an Audit</div>
+                            </div>
+                            <div class="expand-icon">[+]</div>
+                        </div>
+                        <div class="schedule-details" id="details-0" style="display: none;">
+                            <div class="abstract">
+                                <h4>Abstract</h4>
+                                <p>In this talk, I will discuss the widespread use of AI systems in hiring, noting where these systems can be helpful and where they raise discrimination and validity concerns.</p>
+                                <p>The bulk of my talk will focus on the results of a recent audit of the validity of two commercial systems - Humantic AI and Crystal - that claim to construct personality profiles of job seekers based on their resumes and social media feeds. I will present our audit methodology and our findings, namely, that both systems show instability on key facets of measurement and therefore cannot be considered valid testing instruments for pre-hire assessment.</p>
+                                <p>I will conclude with a discussion of recent legal and regulatory developments in the US aimed at reigning in the unaccountable use of AI systems in hiring, and will reflect on what it would take to make the use of AI safe, fair, and socially sustainable in this critical domain.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item break-item">
+                        <div class="schedule-header">
+                            <div class="time">14:30 - 15:00</div>
+                            <div class="speaker-title">
+                                <div class="speaker">Break and group introduction</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item talk-item" onclick="toggleDetails(1)" role="button" tabindex="0">
+                        <div class="schedule-header">
+                            <div class="time">15:00 - 16:00</div>
+                            <div class="speaker-title">
+                                <div class="speaker">George Wang</div>
+                                <div class="title">Social Media Regulation and the First Amendment</div>
+                            </div>
+                            <div class="expand-icon">[+]</div>
+                        </div>
+                        <div class="schedule-details" id="details-1" style="display: none;">
+                            <div class="abstract">
+                                <h4>Abstract</h4>
+                                <p>In the United States, there have been a number of efforts over the last couple of years to regulate social media platforms at both the state and federal level. Many of these laws and regulations have been challenged in court by the platforms and their allies as unconstitutional under the First Amendment. This talk will provide an overview of some of the recent cases and issues in this area.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item break-item">
+                        <div class="schedule-header">
+                            <div class="time">16:00 - 16:30</div>
+                            <div class="speaker-title">
+                                <div class="speaker">Break</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item talk-item">
+                        <div class="schedule-header">
+                            <div class="time">16:30 - 17:30</div>
+                            <div class="speaker-title">
+                                <div class="speaker">Student lightning talks</div>
+                                <div class="title">Ayelet; Tamalika; Amit; Abdella; Moshe; Saeyoung</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item break-item">
+                        <div class="schedule-header">
+                            <div class="time">18:00</div>
+                            <div class="speaker-title">
+                                <div class="speaker">Dinner at Jin Ramen</div>
+                                <div class="title"><a href="https://125.jinramen.com/jin-west-harlem/" target="_blank" rel="noopener noreferrer">Jin Ramen, West Harlem</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <h3>Photos</h3>
@@ -110,38 +202,31 @@
         <p>&copy; Columbia-HUJI Responsible Computing Workshop</p>
     </footer>
 
-    <script src="../components/workshop-config.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-            const container = document.getElementById('schedule-container');
-            const year = container ? container.getAttribute('data-year') : null;
+        function toggleDetails(index) {
+            const details = document.getElementById(`details-${index}`);
+            if (!details) return;
 
-            try {
-                const response = await fetch('../components/schedule-reader.html');
-                if (!response.ok) {
-                    throw new Error(`Failed to load schedule component: ${response.status}`);
-                }
+            const item = details.closest('.schedule-item');
+            const icon = item ? item.querySelector('.expand-icon') : null;
+            const isOpen = details.style.display === 'block';
 
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = await response.text();
-
-                const componentContainer = tempDiv.querySelector('#schedule-container');
-                if (componentContainer && container) {
-                    container.innerHTML = componentContainer.innerHTML;
-                    container.setAttribute('data-year', year);
-                }
-
-                tempDiv.querySelectorAll('script').forEach((script) => {
-                    const newScript = document.createElement('script');
-                    newScript.textContent = script.textContent;
-                    document.body.appendChild(newScript);
-                });
-            } catch (error) {
-                console.error('Error loading schedule component:', error);
-                if (container) {
-                    container.innerHTML = '<p>Schedule currently unavailable.</p>';
-                }
+            details.style.display = isOpen ? 'none' : 'block';
+            if (icon) {
+                icon.textContent = isOpen ? '[+]' : '[-]';
             }
+            if (item) {
+                item.classList.toggle('expanded', !isOpen);
+            }
+        }
+
+        document.querySelectorAll('.schedule-item[role="button"]').forEach((item) => {
+            item.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    item.click();
+                }
+            });
         });
     </script>
     <script>
@@ -155,12 +240,18 @@
                 return;
             }
 
+            document.body.appendChild(lightbox);
+
             const openLightbox = (thumbnail) => {
                 lightboxImage.src = thumbnail.src;
                 lightboxImage.alt = thumbnail.alt;
                 lightbox.hidden = false;
                 document.body.classList.add('lightbox-open');
-                closeButton.focus();
+                try {
+                    closeButton.focus({ preventScroll: true });
+                } catch (error) {
+                    closeButton.focus();
+                }
             };
 
             const closeLightbox = () => {

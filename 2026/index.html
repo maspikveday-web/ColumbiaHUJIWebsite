@@ -41,20 +41,112 @@
 
             <h3>Schedule</h3>
             <div id="schedule-container" data-year="2026">
-                <p>Loading schedule...</p>
+                <div class="schedule">
+                    <div class="schedule-item break-item">
+                        <div class="schedule-header">
+                            <div class="time">12:30 - 13:30</div>
+                            <div class="speaker-title">
+                                <div class="speaker">Lunch and introductions</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item talk-item">
+                        <div class="schedule-header">
+                            <div class="time">13:30 - 14:00</div>
+                            <div class="speaker-title">
+                                <div class="speaker">Lightning talks</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item talk-item" onclick="toggleDetails(0)" role="button" tabindex="0">
+                        <div class="schedule-header">
+                            <div class="time">14:00 - 15:00</div>
+                            <div class="speaker-title">
+                                <div class="speaker">Sergei Vassilvitskii</div>
+                                <div class="title">Keynote 1: Data Sharing and Differential Privacy</div>
+                            </div>
+                            <div class="expand-icon">[+]</div>
+                        </div>
+                        <div class="schedule-details" id="details-0" style="display: none;">
+                            <div class="abstract">
+                                <h4>Abstract</h4>
+                                <p>Differential privacy is the gold standard for statistical data release. Used by governments, companies, and academics, its mathematically rigorous guarantees and worst-case assumptions on the strength and knowledge of attackers make it a robust and compelling framework for reasoning about privacy. However, even with landmark successes, differential privacy has not achieved widespread adoption in everyday data use and data protection. In this talk we examine some recent data sharing regulations and examine some of the practical obstacles that stand in the way.</p>
+                            </div>
+                            <div class="bio">
+                                <h4>Speaker Bio</h4>
+                                <p>Sergei Vassilvitskii is a Distinguished Scientist and Senior Research Director at Google New York. His interests span all aspects of data systems: from algorithms and paradigms for data processing, to user privacy and legal rubrics for data protection. His work has won several best paper awards and has been presented to international regulators and other government stakeholders.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item break-item">
+                        <div class="schedule-header">
+                            <div class="time">15:00 - 15:30</div>
+                            <div class="speaker-title">
+                                <div class="speaker">Break</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item talk-item" onclick="toggleDetails(1)" role="button" tabindex="0">
+                        <div class="schedule-header">
+                            <div class="time">15:30 - 16:30</div>
+                            <div class="speaker-title">
+                                <div class="speaker">Talia Gillis</div>
+                                <div class="title">Keynote 2: Rethinking Frameworks for Algorithmic Fair Lending</div>
+                            </div>
+                            <div class="expand-icon">[+]</div>
+                        </div>
+                        <div class="schedule-details" id="details-1" style="display: none;">
+                            <div class="abstract">
+                                <h4>Abstract</h4>
+                                <p>Machine learning models are now routinely used in consumer finance, with important implications for credit access and inequality. This talk explores how legal frameworks designed for human decision-making struggle to address algorithmic discrimination, and proposes paths forward through greater doctrinal precision and broadening the legal lens through which algorithmic harms are evaluated.</p>
+                                <p>Traditional fair lending law focuses heavily on what goes into algorithms by scrutinizing inputs rather than outcomes. But this input-centric approach misses a fundamental challenge: algorithmic systems force precision in legal standards that have long relied on vagueness. When pricing models have explicit objective functions, we can no longer avoid asking whether profit maximization through price discrimination constitutes a legitimate business justification. When model performance involves clear accuracy-fairness tradeoffs, binary legal frameworks that offer no proportionality mechanism can become undesirable. Algorithmic transparency doesn't just expose technical choices but exposes decades of unresolved doctrinal ambiguity.</p>
+                                <p>This talk argues that meeting this moment requires both sharper tools and wider perspectives. I'll discuss how technical methods can operationalize underutilized legal requirements and make them enforceable in practice. I'll also show why we need to look beyond traditional discrimination frameworks, primarily by exploring consumer protection law as a more flexible approach that can address emerging harms from AI systems, from biased advice to quality disparities. As algorithmic decision-making shapes critical decisions and political challenges threaten existing protections, the responsible computing community has a role to play in building regulatory frameworks that are both robust and adaptive.</p>
+                            </div>
+                            <div class="bio">
+                                <h4>Speaker Bio</h4>
+                                <p>Talia Gillis is the Daniel G. Ross Professor of Law at Columbia Law School and an affiliate of Columbia's Data Science Institute. Her research examines the law and economics of consumer markets, with particular attention to how emerging technologies shape consumer welfare and impact distributional disparities. A central focus of her research is the use of AI in consumer credit and its impact on fair lending practices and doctrine. She has served as Program Co-Chair for ACM FAccT 2025 and will serve as General Chair of the ACM Computer Science &amp; Law Symposium in 2027. She holds a Ph.D. in Business Economics from Harvard University and an SJD from Harvard Law School. Prior to her doctoral studies, she earned a BCL from Oxford University and an LL.B. in Law and Economics from the Hebrew University.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item break-item">
+                        <div class="schedule-header">
+                            <div class="time">16:30 - 17:00</div>
+                            <div class="speaker-title">
+                                <div class="speaker">Break</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item talk-item">
+                        <div class="schedule-header">
+                            <div class="time">17:00 - 17:30</div>
+                            <div class="speaker-title">
+                                <div class="speaker">Lightning talks</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-item break-item">
+                        <div class="schedule-header">
+                            <div class="time">18:15</div>
+                            <div class="speaker-title">
+                                <div class="speaker">Dinner at Jin Ramen</div>
+                                <div class="title"><a href="https://125.jinramen.com/jin-west-harlem/" target="_blank" rel="noopener noreferrer">Jin Ramen, West Harlem</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <h3>Venue</h3>
-            <div class="venue-grid">
-                <div>
-                    <p>The workshop met at Columbia University's Data Science Institute on the 14th floor of the Northwest Corner Building.</p>
-                    <p>Use the campus entrance marked on the map, then continue toward the Northwest Corner Building.</p>
-                    <p><a href="../NewMaterialForColumbiHUJIWebsite/map%20of%20how%20to%20get%20there.png" target="_blank" rel="noopener noreferrer">Open venue map</a></p>
-                </div>
-                <figure class="venue-map">
-                    <img src="../NewMaterialForColumbiHUJIWebsite/map%20of%20how%20to%20get%20there.png" alt="Map showing route from Columbia campus entrance to the Northwest Corner Building">
-                </figure>
-            </div>
+            <p>The workshop met at Columbia University's Data Science Institute on the 14th floor of the Northwest Corner Building.</p>
+            <p>Use the campus entrance shown on the venue map, then continue toward the Northwest Corner Building.</p>
+            <p><a href="../NewMaterialForColumbiHUJIWebsite/map%20of%20how%20to%20get%20there.png" target="_blank" rel="noopener noreferrer">Open venue map</a></p>
 
             <h3>Photos</h3>
             <div class="photo-strip">
@@ -73,38 +165,31 @@
         <p>&copy; Columbia-HUJI Responsible Computing Workshop</p>
     </footer>
 
-    <script src="../components/workshop-config.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-            const container = document.getElementById('schedule-container');
-            const year = container ? container.getAttribute('data-year') : null;
+        function toggleDetails(index) {
+            const details = document.getElementById(`details-${index}`);
+            if (!details) return;
 
-            try {
-                const response = await fetch('../components/schedule-reader.html');
-                if (!response.ok) {
-                    throw new Error(`Failed to load schedule component: ${response.status}`);
-                }
+            const item = details.closest('.schedule-item');
+            const icon = item ? item.querySelector('.expand-icon') : null;
+            const isOpen = details.style.display === 'block';
 
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = await response.text();
-
-                const componentContainer = tempDiv.querySelector('#schedule-container');
-                if (componentContainer && container) {
-                    container.innerHTML = componentContainer.innerHTML;
-                    container.setAttribute('data-year', year);
-                }
-
-                tempDiv.querySelectorAll('script').forEach((script) => {
-                    const newScript = document.createElement('script');
-                    newScript.textContent = script.textContent;
-                    document.body.appendChild(newScript);
-                });
-            } catch (error) {
-                console.error('Error loading schedule component:', error);
-                if (container) {
-                    container.innerHTML = '<p>Schedule currently unavailable.</p>';
-                }
+            details.style.display = isOpen ? 'none' : 'block';
+            if (icon) {
+                icon.textContent = isOpen ? '[+]' : '[-]';
             }
+            if (item) {
+                item.classList.toggle('expanded', !isOpen);
+            }
+        }
+
+        document.querySelectorAll('.schedule-item[role="button"]').forEach((item) => {
+            item.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    item.click();
+                }
+            });
         });
     </script>
 </body>
