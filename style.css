@@ -287,9 +287,19 @@ a:hover {
     gap: 14px;
 }
 
+.photo-strip figure {
+    margin: 0;
+}
+
 .photo-strip img {
     aspect-ratio: 4 / 3;
     object-fit: cover;
+}
+
+.photo-strip figcaption {
+    color: #6c757d;
+    font-size: 0.9em;
+    margin-top: 8px;
 }
 
 /* Basic styling for tables if needed later */
