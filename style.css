@@ -262,6 +262,81 @@ a:hover {
     margin: 22px 0 28px;
 }
 
+.institution-band {
+    border-top: 1px solid #e5eaf0;
+    border-bottom: 1px solid #e5eaf0;
+    margin: 26px 0 32px;
+    padding: 24px 0;
+}
+
+.institution-band h3 {
+    margin-top: 0;
+}
+
+.institution-logos {
+    align-items: center;
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.institution-logo {
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #d9e0e7;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    min-height: 104px;
+    padding: 18px;
+    text-decoration: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.institution-logo:hover,
+.institution-logo:focus {
+    border-color: var(--accent);
+    box-shadow: 0 4px 10px rgba(31, 78, 121, 0.12);
+    outline: none;
+    transform: translateY(-2px);
+}
+
+.institution-logo img {
+    display: block;
+    max-height: 64px;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.institution-logo-columbia img {
+    max-height: 54px;
+}
+
+.institution-logo-dsi {
+    color: var(--primary);
+    flex-direction: column;
+    gap: 5px;
+    text-align: center;
+}
+
+.institution-logo-dsi img {
+    height: 38px;
+    width: 38px;
+}
+
+.institution-logo-dsi span {
+    color: var(--primary);
+    font-size: 1.05em;
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.institution-logo-dsi small {
+    color: #5d6b78;
+    font-size: 0.85em;
+    line-height: 1.1;
+}
+
 .document-list {
     padding-left: 20px;
 }
@@ -591,6 +666,10 @@ th {
     .hero-panel,
     .venue-grid,
     .photo-strip {
+        grid-template-columns: 1fr;
+    }
+
+    .institution-logos {
         grid-template-columns: 1fr;
     }
 
