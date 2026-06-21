@@ -225,6 +225,10 @@ a:hover {
     margin: 0;
 }
 
+.hero-panel .hero-photo {
+    margin-top: -28px;
+}
+
 .hero-photo img,
 .venue-map img,
 .photo-strip img {
@@ -691,6 +695,10 @@ th {
     .venue-grid,
     .photo-strip {
         grid-template-columns: 1fr;
+    }
+
+    .hero-panel .hero-photo {
+        margin-top: 0;
     }
 
     .institution-logos {
