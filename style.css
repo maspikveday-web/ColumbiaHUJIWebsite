@@ -287,13 +287,33 @@ a:hover {
     gap: 14px;
 }
 
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+}
+
 .photo-strip figure {
+    margin: 0;
+}
+
+.photo-gallery figure {
     margin: 0;
 }
 
 .photo-strip img {
     aspect-ratio: 4 / 3;
     object-fit: cover;
+}
+
+.photo-gallery img {
+    aspect-ratio: 4 / 3;
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 6px;
 }
 
 .photo-strip figcaption {
