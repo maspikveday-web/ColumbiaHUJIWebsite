@@ -98,6 +98,11 @@
                     <img src="../NewMaterialForColumbiHUJIWebsite/2025-photos/WhatsApp%20Image%202026-05-20%20at%2023.31.45.jpeg" alt="2025 Columbia-HUJI workshop photo">
                 </figure>
             </div>
+
+            <div class="photo-lightbox" id="photo-lightbox" hidden>
+                <button type="button" class="photo-lightbox-close" aria-label="Close enlarged photo">&times;</button>
+                <img src="" alt="">
+            </div>
         </main>
     </div>
 
@@ -137,6 +142,57 @@
                     container.innerHTML = '<p>Schedule currently unavailable.</p>';
                 }
             }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const lightbox = document.getElementById('photo-lightbox');
+            const lightboxImage = lightbox ? lightbox.querySelector('img') : null;
+            const closeButton = lightbox ? lightbox.querySelector('.photo-lightbox-close') : null;
+            const thumbnails = document.querySelectorAll('.photo-gallery img');
+
+            if (!lightbox || !lightboxImage || !closeButton || thumbnails.length === 0) {
+                return;
+            }
+
+            const openLightbox = (thumbnail) => {
+                lightboxImage.src = thumbnail.src;
+                lightboxImage.alt = thumbnail.alt;
+                lightbox.hidden = false;
+                document.body.classList.add('lightbox-open');
+                closeButton.focus();
+            };
+
+            const closeLightbox = () => {
+                lightbox.hidden = true;
+                lightboxImage.src = '';
+                document.body.classList.remove('lightbox-open');
+            };
+
+            thumbnails.forEach((thumbnail) => {
+                thumbnail.setAttribute('tabindex', '0');
+                thumbnail.setAttribute('role', 'button');
+                thumbnail.setAttribute('aria-label', 'Enlarge photo');
+                thumbnail.addEventListener('click', () => openLightbox(thumbnail));
+                thumbnail.addEventListener('keydown', (event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        openLightbox(thumbnail);
+                    }
+                });
+            });
+
+            closeButton.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (event) => {
+                if (event.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && !lightbox.hidden) {
+                    closeLightbox();
+                }
+            });
         });
     </script>
 </body>
