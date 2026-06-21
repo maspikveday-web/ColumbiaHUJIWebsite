@@ -273,6 +273,16 @@ a:hover {
     margin-top: 0;
 }
 
+.hero-institution-band {
+    margin: 20px 0 22px;
+    padding: 16px 0;
+}
+
+.hero-institution-band h3 {
+    font-size: 1.05em;
+    margin-bottom: 12px;
+}
+
 .institution-logos {
     align-items: center;
     display: grid;
@@ -291,6 +301,11 @@ a:hover {
     padding: 18px;
     text-decoration: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.hero-institution-band .institution-logo {
+    min-height: 86px;
+    padding: 12px;
 }
 
 .institution-logo:hover,
