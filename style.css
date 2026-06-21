@@ -337,6 +337,15 @@ a:hover {
     line-height: 1.1;
 }
 
+.acknowledgments {
+    color: #3f4a54;
+    margin-top: 18px;
+}
+
+.acknowledgments p {
+    margin: 6px 0;
+}
+
 .document-list {
     padding-left: 20px;
 }
