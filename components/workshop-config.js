@@ -1,60 +1,50 @@
 /**
  * Workshop Configuration File
- * 
- * This file controls which content appears on the main page.
- * Update these settings when transitioning between workshop phases.
+ *
+ * Shared metadata for the Columbia-HUJI Responsible Computing Workshop site.
  */
 
 const WORKSHOP_CONFIG = {
-    // Current workshop year
     currentYear: 2026,
-    
-    // Workshop phase: 'call-for-talks', 'schedule', 'past', 'upcoming'
-    currentPhase: 'upcoming',
-    
-    // Component paths
+    currentPhase: 'archive',
+
     components: {
-        'schedule': 'components/schedule-reader.html'
+        schedule: 'components/schedule-reader.html'
     },
-    
-    // Workshop details
+
     workshops: {
         2025: {
-            date: 'Thursday, June 12th, 2025',
-            location: 'Hebrew University of Jerusalem',
-            registrationUrl: 'https://docs.google.com/forms/d/1HTOkuA5JB6wycBon2YZp5w2nuCLmZm8AmXu3AA4WDtk/viewform',
+            date: 'February 5th, 2025',
+            location: 'Columbia University, Data Science Institute',
             scheduleDataPath: '2025/schedule.csv'
         },
         2026: {
-            date: 'Summer 2026',
-            location: 'TBD',
-            registrationUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSfHp0EslKUkQcztFAkVuYVIBoGKdsUCgOQL98bwzelvx0NiJA/viewform?usp=header',
-            scheduleDataPath: null
+            date: 'February 4th, 2026',
+            location: 'Columbia University, Data Science Institute',
+            scheduleDataPath: '2026/schedule.csv'
         }
     }
 };
 
-// Function to load component content
 async function loadComponent(componentType) {
     try {
         const componentPath = WORKSHOP_CONFIG.components[componentType];
         if (!componentPath) {
             throw new Error(`Unknown component type: ${componentType}`);
         }
-        
+
         const response = await fetch(componentPath);
         if (!response.ok) {
             throw new Error(`Failed to load component: ${response.status}`);
         }
-        
+
         return await response.text();
     } catch (error) {
         console.error(`Error loading component ${componentType}:`, error);
-        return `<p>Content currently unavailable. Please try again later.</p>`;
+        return '<p>Content currently unavailable. Please try again later.</p>';
     }
 }
 
-// Function to get current workshop info
 function getCurrentWorkshopInfo() {
     return WORKSHOP_CONFIG.workshops[WORKSHOP_CONFIG.currentYear];
 }

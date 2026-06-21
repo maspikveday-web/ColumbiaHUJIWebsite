@@ -26,6 +26,7 @@
                 const bio = (item.bio || '').toString().replace(/\\n/g, '<br>');
                 const startTime = (item.start_time || '').toString();
                 const endTime = (item.end_time || '').toString();
+                const timeLabel = endTime.trim() ? `${startTime} - ${endTime}` : startTime;
                 const expandable = (item.expandable || '').toString();
                 
                 console.log(`Item ${index}:`, {
@@ -39,6 +40,9 @@
                 
                 const isBreak = speaker.toLowerCase().includes('break') || 
                               speaker.toLowerCase().includes('lunch') ||
+                              speaker.toLowerCase().includes('dinner') ||
+                              speaker.toLowerCase().includes('setup') ||
+                              speaker.toLowerCase().includes('set up') ||
                               speaker.toLowerCase().includes('registration') ||
                               !speaker.trim();
                 
@@ -55,7 +59,7 @@
                 html += `
                     <div class="schedule-item ${itemClasses}" ${isExpandable ? `onclick="toggleDetails(${index})"` : ''}>
                         <div class="schedule-header">
-                            <div class="time">${startTime} - ${endTime}</div>
+                            <div class="time">${timeLabel}</div>
                             <div class="speaker-title">
                                 <div class="speaker">${speaker}</div>
                                 <div class="title">${title}</div>

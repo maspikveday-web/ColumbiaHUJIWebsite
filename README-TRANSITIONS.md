@@ -1,134 +1,58 @@
-# Workshop Year Transition Guide
+# Columbia-HUJI Responsible Computing Workshop Site
 
-This guide explains how to transition the workshop website between different phases and years.
+Static website for the Columbia-HUJI Responsible Computing Workshop.
 
 ## Repository
 
 GitHub repository: https://github.com/maspikveday-web/ColumbiaHUJIWebsite.git
 
-Clone the project:
 ```bash
 git clone https://github.com/maspikveday-web/ColumbiaHUJIWebsite.git
 ```
 
-Set the remote for an existing checkout:
+For an existing checkout:
+
 ```bash
 git remote set-url origin https://github.com/maspikveday-web/ColumbiaHUJIWebsite.git
 ```
 
-## File Structure
+## Structure
 
-```
+```text
 /
-├── index.html                          # Main page (dynamic content)
+├── index.html
+├── past.html
+├── style.css
 ├── components/
-│   ├── workshop-config.js              # Main configuration file
-│   └── schedule-reader.html            # Universal schedule component
+│   ├── schedule-reader.html
+│   └── workshop-config.js
 ├── 2025/
-│   ├── index.html                      # 2025 dedicated page
-│   └── schedule.csv                    # 2025 schedule data (CSV format)
+│   ├── index.html
+│   └── schedule.csv
 ├── 2026/
-│   ├── call-for-talks.html             # 2026 call for talks component
-│   └── index.html                      # Future 2026 dedicated page
-└── past.html                           # Past workshops archive
+│   ├── index.html
+│   └── schedule.csv
+└── NewMaterialForColumbiHUJIWebsite/
+    ├── Columbia Workshop Schedule - Feb 2025.pdf
+    ├── Responsible Computing Workshop - Feb 2025.pdf
+    ├── Columbia-HUJI Responsible Computing Workshop - Feb 4. 2026 (2).pdf
+    ├── map of how to get there.png
+    └── workshop photos
 ```
 
-## Transition Process
+## Updating A Program
 
-### Phase 1: Call for Talks (Start of Workshop Cycle)
+Each yearly page loads its schedule from that year's `schedule.csv`.
 
-**To switch to call-for-talks mode:**
-
-1. Edit `components/workshop-config.js`:
-   ```javascript
-   currentYear: 2026,
-   currentPhase: 'call-for-talks',
-   ```
-
-2. Update workshop details in the config:
-   ```javascript
-   2026: {
-       date: 'Thursday, June XX, 2026',  // Update actual date
-       location: 'University Name',      // Update location
-       registrationUrl: 'https://...',   // Add registration form
-       scheduleDataPath: null            // No schedule yet
-   }
-   ```
-
-3. Update `2026/call-for-talks.html` with:
-   - Submission deadlines
-   - Contact information
-   - Submission guidelines
-
-### Phase 2: Schedule Available (After Program Committee Decisions)
-
-**To switch to schedule mode:**
-
-1. Create the schedule data:
-   - Create `2026/schedule.csv` with the workshop program
-
-2. Edit `components/workshop-config.js`:
-   ```javascript
-   currentPhase: 'schedule',
-   workshops: {
-       2026: {
-           // ...other details...
-           scheduleDataPath: '2026/schedule.csv'
-       }
-   }
-   ```
-
-3. Create `2026/index.html` (copy from `2025/index.html` and update paths)
-
-### Phase 3: After Workshop (Archive Previous Year)
-
-1. Move 2025 to past workshops:
-   - Update `past.html` to include 2025 workshop
-   - Update navigation links
-
-2. Prepare for next year:
-   - Create `2027/` directory
-   - Create new call-for-talks component
-
-## Key Benefits
-
-✅ **Easy Transitions**: Change 2 lines in config file to switch phases  
-✅ **No Code Duplication**: Shared schedule component  
-✅ **CSV Editing**: Non-technical users can edit schedule.csv  
-✅ **Future-Proof**: Clear process for adding new years  
-✅ **Consistent Design**: All phases use same styling  
-
-## Example Transition Commands
-
-**Start of 2026 workshop cycle:**
-```javascript
-// In components/workshop-config.js
-currentYear: 2026,
-currentPhase: 'call-for-talks',
-```
-
-**When schedule is ready:**
-```javascript
-// In components/workshop-config.js
-currentPhase: 'schedule',
-```
-
-**After workshop concludes:**
-```javascript
-// In components/workshop-config.js
-currentYear: 2027,
-currentPhase: 'call-for-talks',
-```
-
-## Schedule CSV Format
-
-The schedule.csv file should follow this format:
 ```csv
 start_time,end_time,speaker,title,abstract,bio,expandable
-9:30,10:00,Registration,,,,FALSE
-10:00,10:10,Speaker Name,Talk Title,"Abstract text","Speaker bio",TRUE
+14:00,15:00,Speaker Name,Talk Title,"Abstract text","Speaker bio",TRUE
+15:00,15:30,Break,,,,FALSE
+18:00,,Dinner at Jin Ramen,"Dinner details",,,FALSE
 ```
 
-- Use quotes around fields containing commas
-- Set `expandable=TRUE` for talks with abstracts/bios
-- Leave abstract/bio empty for TBD talks
+Use quotes around fields containing commas. Use `\n` inside CSV fields for paragraph breaks. Set `expandable` to `TRUE` for talks with abstracts or bios.
+
+## Viewing Locally
+
+The schedule component uses `fetch()`, so view the site through a local web server rather than opening the HTML files directly.

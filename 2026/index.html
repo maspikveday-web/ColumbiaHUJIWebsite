@@ -3,39 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 Workshop - Israeli Privacy and Fairness Workshop</title>
+    <title>2026 Workshop - Columbia-HUJI Responsible Computing Workshop</title>
     <link rel="stylesheet" href="../style.css">
-    
 </head>
 <body>
     <header class="fade-in">
-        <h1>The Israeli Privacy and Fairness Workshop (2026)</h1>
+        <h1>Columbia-HUJI Responsible Computing Workshop (2026)</h1>
     </header>
-    <div class="container fade-in">
-    <nav>
-        <ul>
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="index.html">Upcoming Workshop</a></li>
-            <li><a href="../past.html">Past Workshops</a></li>
-        </ul>
-    </nav>
-    </div>
-    <div class="container fade-in">
-    <main>
-        <h2>Third Israeli Privacy and Fairness Workshop</h2>
 
-        <div class="workshop-announcement" style="background-color: #f8f9fa; padding: 30px; border-radius: 8px; margin: 30px 0; text-align: center; border-left: 4px solid #007bff;">
-            <!-- <h3 style="color: #007bff; margin-bottom: 20px;">Coming Soon!</h3> -->
-            <p style="font-size: 1.2em; margin-bottom: 15px;">The 2026 Israeli Privacy and Fairness Workshop will take place in the <strong>summer of 2026</strong>.</p>
-            <p style="color: #666; margin-bottom: 20px;">More details about the event, including the exact date, location, and call for talks, will be announced in the coming months.</p>
-            <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSfHp0EslKUkQcztFAkVuYVIBoGKdsUCgOQL98bwzelvx0NiJA/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="btn" style="background-color: #007bff; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; display: inline-block;">Register for Updates &rarr;</a></p>
-        </div>
-
-        <p><a href="../past.html">View Past Workshops &rarr;</a></p>
-    </main>
+    <div class="container fade-in">
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="index.html">2026 Workshop</a></li>
+                <li><a href="../past.html">Past Workshops</a></li>
+            </ul>
+        </nav>
     </div>
+
+    <div class="container fade-in">
+        <main>
+            <p class="site-kicker">February 4th, 2026</p>
+            <h2>Responsible Computing: Bringing Together Legal and Technical Perspectives</h2>
+
+            <p class="lead">The 2026 Columbia-HUJI Responsible Computing Workshop brought together legal and technical perspectives on privacy, fair lending, AI governance, and data sharing.</p>
+
+            <div class="event-meta">
+                <p><strong>Date:</strong> February 4th, 2026</p>
+                <p><strong>Location:</strong> Columbia University, Northwest Corner Building, 550 W 120th St, 14th floor, Data Science Institute (DSI)</p>
+                <p><strong>Dinner:</strong> Jin Ramen, West Harlem</p>
+            </div>
+
+            <div class="action-row">
+                <a href="../NewMaterialForColumbiHUJIWebsite/Columbia-HUJI%20Responsible%20Computing%20Workshop%20-%20Feb%204.%202026%20%282%29.pdf" target="_blank" rel="noopener noreferrer" class="btn">Program PDF &rarr;</a>
+                <a href="https://125.jinramen.com/jin-west-harlem/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Dinner Location</a>
+            </div>
+
+            <h3>Schedule</h3>
+            <div id="schedule-container" data-year="2026">
+                <p>Loading schedule...</p>
+            </div>
+
+            <h3>Venue</h3>
+            <div class="venue-grid">
+                <div>
+                    <p>The workshop met at Columbia University's Data Science Institute on the 14th floor of the Northwest Corner Building.</p>
+                    <p>Use the campus entrance marked on the map, then continue toward the Northwest Corner Building.</p>
+                    <p><a href="../NewMaterialForColumbiHUJIWebsite/map%20of%20how%20to%20get%20there.png" target="_blank" rel="noopener noreferrer">Open venue map</a></p>
+                </div>
+                <figure class="venue-map">
+                    <img src="../NewMaterialForColumbiHUJIWebsite/map%20of%20how%20to%20get%20there.png" alt="Map showing route from Columbia campus entrance to the Northwest Corner Building">
+                </figure>
+            </div>
+
+            <h3>Photos</h3>
+            <div class="photo-strip">
+                <img src="../NewMaterialForColumbiHUJIWebsite/WhatsApp%20Image%202026-05-13%20at%2008.34.43.jpeg" alt="Workshop participants at Columbia University">
+                <img src="../NewMaterialForColumbiHUJIWebsite/WhatsApp%20Image%202026-05-13%20at%2008.34.42.jpeg" alt="View from the workshop venue at Columbia University">
+            </div>
+        </main>
+    </div>
+
     <footer class="fade-in">
-        <p>&copy; Israeli Privacy and Fairness Workshop</p>
+        <p>&copy; Columbia-HUJI Responsible Computing Workshop</p>
     </footer>
+
+    <script src="../components/workshop-config.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const container = document.getElementById('schedule-container');
+            const year = container ? container.getAttribute('data-year') : null;
+
+            try {
+                const response = await fetch('../components/schedule-reader.html');
+                if (!response.ok) {
+                    throw new Error(`Failed to load schedule component: ${response.status}`);
+                }
+
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = await response.text();
+
+                const componentContainer = tempDiv.querySelector('#schedule-container');
+                if (componentContainer && container) {
+                    container.innerHTML = componentContainer.innerHTML;
+                    container.setAttribute('data-year', year);
+                }
+
+                tempDiv.querySelectorAll('script').forEach((script) => {
+                    const newScript = document.createElement('script');
+                    newScript.textContent = script.textContent;
+                    document.body.appendChild(newScript);
+                });
+            } catch (error) {
+                console.error('Error loading schedule component:', error);
+                if (container) {
+                    container.innerHTML = '<p>Schedule currently unavailable.</p>';
+                }
+            }
+        });
+    </script>
 </body>
 </html>
